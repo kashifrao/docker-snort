@@ -1,0 +1,18 @@
+
+    #- name: "pull snort image"
+    #  ansible.builtin.docker_image:
+    #    name: "ciscotalos"
+    #    tag: "snort3"
+    #    source: pull
+
+    - name: Install Snort
+      docker_container:
+        state: started
+        name: snort3
+        user: snorty
+        image: ciscotalos/snort3 
+        detach: yes
+        interactive: yes
+        restart: true
+        working_dir: /home/snorty
+      become_user: root
